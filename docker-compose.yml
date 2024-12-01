@@ -20,6 +20,9 @@ services:
     container_name: backend
     ports:
       - "3001:3001"
+    volumes:
+      - ./back:/app
+    command: sh -c "npm install && npx prisma migrate deploy && npm run start:dev"
     depends_on:
       - postgres
 
@@ -28,8 +31,11 @@ services:
       context: ./front
       dockerfile: Dockerfile
     container_name: frontend
+    volumes:
+      - ./front:/app
     ports:
       - "3000:3000"
+    command: sh -c "npm install && npm run dev"
     depends_on:
       - backend
 
