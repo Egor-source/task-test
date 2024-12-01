@@ -8,14 +8,14 @@
 </template>
 
 <script setup lang="ts">
-import type { StatisticsModel } from "~/models/onboarding/StatisticsModel";
+import type {StatisticsModel} from "~/models/onboarding/StatisticsModel";
 
 const config = useRuntimeConfig();
 
 useHead({
   title: "Statistics"
 });
-const { data, status } = await useFetch<StatisticsModel>("/api/onboarding/statistics", {
+const {data, status} = await useFetch<StatisticsModel>("/api/onboarding/statistics", {
   baseURL: config.public.baseURL,
   server: false
 });
@@ -25,11 +25,12 @@ const completedOnboardingsCount = computed(() => {
 });
 
 const percentageCompleters = computed(() => {
-  if (!data.value) return null;
-  return Math.floor(data.value.completedOnboardingsCount / (data.value.allOnboardingsCount / 100));
+  if (!data.value) return 0;
+  const result = Math.floor(data.value.completedOnboardingsCount / (data.value.allOnboardingsCount / 100))
+  return isNaN(result) ? 0 : result;
 });
 
-const { $socket } = useNuxtApp();
+const {$socket} = useNuxtApp();
 
 const onboardingCompleted = () => {
   if (!data.value) return;
@@ -43,14 +44,14 @@ const onboardingStarted = () => {
 }
 
 onMounted(() => {
-  $socket.on("onboardingCompleted",onboardingCompleted);
-  $socket.on("onboardingStarted",onboardingStarted);
+  $socket.on("onboardingCompleted", onboardingCompleted);
+  $socket.on("onboardingStarted", onboardingStarted);
 
 });
 
-onBeforeUnmount(()=>{
-  $socket.off("onboardingCompleted",onboardingCompleted);
-  $socket.off("onboardingStarted",onboardingStarted);
+onBeforeUnmount(() => {
+  $socket.off("onboardingCompleted", onboardingCompleted);
+  $socket.off("onboardingStarted", onboardingStarted);
 })
 
 </script>
