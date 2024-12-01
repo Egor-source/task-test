@@ -14,3 +14,5 @@
 
    ```bash
    docker-compose up
+
+4. После запуска проекта откройте http://localhost:3000 в браузере
