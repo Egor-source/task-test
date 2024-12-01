@@ -8,11 +8,14 @@
 
    ```bash
    git clone https://github.com/Egor-source/task-test.git
+
+3. Перейдите в дирректорию проекта
+   ```bash
    cd task-test
    
-3. Запустите проект
+4. Запустите проект
 
    ```bash
    docker-compose up
 
-4. После запуска проекта откройте http://localhost:3000 в браузере
+5. После запуска проекта откройте http://localhost:3000 в браузере
