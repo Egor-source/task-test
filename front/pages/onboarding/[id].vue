@@ -24,17 +24,17 @@ type OnboardingDataType = {
 
 const onboarding: OnboardingDataType = {
   "1": {
-    video: "https://cdn.getglam.app/content/paywalls/240515_web2web_video1_v04.mp4",
+    video: "/video/video1.mp4",
     title: "Welcome to Glam!",
     nextPage: "/onboarding/2"
   },
   "2": {
-    video: "https://cdn.getglam.app/content/paywalls/240515_web2web_video2_v01.mp4",
+    video: "/video/video2.mp4",
     title: "Match your Aesthetic",
     nextPage: "/onboarding/3"
   },
   "3": {
-    video: "https://cdn.getglam.app/content/paywalls/240515_web2web_video3_v01.mp4",
+    video: "/video/video3.mp4",
     title: "Explore 100+ Styles",
     nextPage: "/statistics"
   }
